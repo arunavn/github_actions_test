@@ -1,0 +1,14 @@
+name: loop around folder
+run-name: loop-around
+on: [push]
+jobs:
+  loop-around-folder:
+    env:
+      DEPLOY_ENV: dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
