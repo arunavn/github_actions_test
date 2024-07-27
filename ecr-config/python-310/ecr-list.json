@@ -1,4 +1,10 @@
-{
-
-    
-}
+[
+    {
+        "path": "basic-connector",
+        "tag": "basic-connector"
+    },
+    {
+        "path": "data-analysis",
+        "tag": "data-analysis"
+    }
+]
