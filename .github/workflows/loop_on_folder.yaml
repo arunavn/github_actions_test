@@ -2,7 +2,7 @@ name: loop around folder
 run-name: loop-around
 on: [push]
 jobs:
-  job1:
+  read-config-:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -11,11 +11,19 @@ jobs:
       # run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
       run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
 
-  job2:
+  push-ecr-python311:
     needs: job1
     runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{fromJson(GITHUB_OUTPUT.matrix)}}
     steps:
-    - run: echo ${{ matrix.project }}
-    - run: echo ${{ matrix.config }}
+    steps:
+    - uses: actions/checkout@v4
+    - id: push-images-311
+      run: source scripts/push_ecr_images.sh
+  # push-ecr-python311:
+  #   needs: job1
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+  #   steps:
+  #   - run: echo ${{ matrix.project }}
+  #   - run: echo ${{ matrix.config }}
