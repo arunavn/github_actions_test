@@ -2,7 +2,7 @@ name: loop around folder
 run-name: loop-around
 on: [push]
 jobs:
-  read-config-:
+  read-config:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -12,7 +12,7 @@ jobs:
       run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
 
   push-ecr-python311:
-    needs: job1
+    needs: read-config
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
