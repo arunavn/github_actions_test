@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - id: push-images-311
-      run: source scripts/push_ecr_images.sh
+      run: source scripts/push_ecr_images.sh python-311
   # push-ecr-python311:
   #   needs: job1
   #   runs-on: ubuntu-latest
