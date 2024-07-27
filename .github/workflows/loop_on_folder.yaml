@@ -15,7 +15,7 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson($GITHUB_OUTPUT.matrix)}}
+      matrix: ${{fromJson(GITHUB_OUTPUT.matrix)}}
     steps:
     - run: echo ${{ matrix.project }}
     - run: echo ${{ matrix.config }}
