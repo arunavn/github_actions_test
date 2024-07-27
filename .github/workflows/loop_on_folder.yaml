@@ -15,7 +15,6 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     steps:
-    steps:
     - uses: actions/checkout@v4
     - id: push-images-311
       run: source scripts/push_ecr_images.sh
